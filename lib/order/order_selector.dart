@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pos_vanilla/style/order_button.dart';
 
 class OrderSelector extends StatefulWidget {
   @override
@@ -8,15 +9,56 @@ class OrderSelector extends StatefulWidget {
 class _OrderSelectorState extends State<OrderSelector> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: _buildGrid());
+    return Column(
+      children: <Widget>[
+        _categorySelectorView(),
+        _itemSelectorView(),
+      ],
+    );
   }
 
-  Widget _buildGrid() => GridView.extent(
-      maxCrossAxisExtent: 150,
-      padding: const EdgeInsets.all(5),
-      mainAxisSpacing: 5,
-      crossAxisSpacing: 5,
-      children: _buildGridTileList(50));
+  Widget _categorySelectorView() => Expanded(
+        child: Row(
+          children: [
+            Expanded(
+              child: _button('Main'),
+              flex: 1,
+            ),
+            Expanded(
+              child: _button('Appetizers & Side'),
+              flex: 1,
+            ),
+            Expanded(
+              child: _button('Drinks'),
+              flex: 1,
+            ),
+          ],
+        ),
+        flex: 1,
+      );
+
+  Widget _itemSelectorView() => Expanded(
+        child: Container(
+          child: _buildGrid(),
+        ),
+        flex: 3,
+      );
+
+  Widget _button(var text) => TextButton(
+        style: OrderButtonStyle.regularButtonStyle,
+        onPressed: () {},
+        child: Text(text),
+      );
+
+  Widget _buildGrid() {
+    List<Container> list = _buildGridTileList(30);
+    return GridView.extent(
+        maxCrossAxisExtent: 200,
+        padding: const EdgeInsets.all(5),
+        mainAxisSpacing: 5,
+        crossAxisSpacing: 5,
+        children: list);
+  }
 
   List<Container> _buildGridTileList(int count) => List.generate(
       count,

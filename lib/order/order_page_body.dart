@@ -10,26 +10,21 @@ class OrderPageBody extends StatefulWidget {
 class OrderPageState extends State<OrderPageBody> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            /*Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Row1')],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OrderSelector(),
-              ],
-            ),*/
-            Expanded(child: OrderDetail()),
-            OrderSelector(),
-          ],
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            child: OrderDetail(),
+          ),
+          flex: 2,
         ),
-      ),
+        Expanded(
+          child: Container(
+            child: OrderSelector(),
+          ),
+          flex: 3,
+        ),
+      ],
     );
   }
 }

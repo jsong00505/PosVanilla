@@ -15,6 +15,7 @@ class _OrderPageState extends State<OrderPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Colors.white,
         child: OrderPageBody(),
       ),
     );
